@@ -1,0 +1,29 @@
+{
+  "name": "n8n-nodes-cumulocity",
+  "version": "1.0.0",
+  "description": "Cumulocity node for n8n",
+  "main": "dist/nodes/Cumulocity/Cumulocity.node.js",
+  "scripts": {
+    "build": "tsc && copyfiles -u 0 nodes/**/*.svg dist/"
+  },
+  "files": [
+    "dist"
+  ],
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "credentials": [
+      "dist/credentials/CumulocityApi.credentials.js"
+    ],
+    "nodes": [
+      "dist/nodes/Cumulocity/Cumulocity.node.js"
+    ]
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "copyfiles": "^2.4.1",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "n8n-workflow": "^1.0.0"
+  }
+}
