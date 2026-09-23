@@ -40,6 +40,7 @@ Compile the TypeScript definitions and copy the SVG icons to the `dist/` build d
 ```bash
 npm run build
 ```
+---
 ## Deployment & Docker Integration
 
 To deploy and test your compiled node in a local n8n Docker setup, sync the build output directly to your n8n custom node directory and restart the container:
