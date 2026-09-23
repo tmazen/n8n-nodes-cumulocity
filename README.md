@@ -67,7 +67,7 @@ Bash
 npm run build
 
 # 2. Sync node package into your n8n Docker custom node_modules folder
-rsync -av --delete --exclude 'node_modules' ./ /path/to/n8n/docker/custom/node_modules/n8n-nodes-cumulocity/
+rsync -av --exclude 'node_modules' ./ /path/to/n8n/docker/custom/node_modules/n8n-nodes-cumulocity/
 
 # 3. Restart n8n Docker container
 docker restart <YOUR_CONTAINER_ID_OR_NAME>
