@@ -85,6 +85,6 @@ This node is engineered to plug directly into an **AI Agent Orchestrator** in n8
 | **Measurement Agent** | `measurement` | `createMeasurement`, `getBySource`, `getByType`, `getByFragmentType`, `deleteById` |
 | **Alarm Agent** | `alarm` | `createAlarm`, `getById`, `getBySource`, `getByFragmentType`, `getBySeverity`, `getByStatus`, `updateStatus`, `updateSeverity`, `deleteById` |
 | **Event Agent** | `event` | `createEvent`, `getById`, `getBySource`, `deleteById` |
-| **Identity Agent** | `identity` | `createExternalId`, `getExternalId`, `getAllExternalIds`, `deleteExternalId` |
 | **Operations Agent** | `operation` | `createOperation`, `getById`, `getByDevice`, `updateStatusById` |
+| **Identity Agent** | `identity` | `createExternalId`, `getExternalId`, `getAllExternalIds`, `deleteExternalId` |
 | **Asset Agent** | `asset` | `assignChildDevice`, `assignChildAsset`, `getChildDevices`, `unassignChildDevice` |
