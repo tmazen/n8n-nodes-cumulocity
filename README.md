@@ -1,6 +1,6 @@
 # n8n-nodes-cumulocity
 
-An enterprise-grade community node for [n8n](https://n8n.io) that enables native, declarative orchestration of [Cumulocity IoT](https://www.softwareag.com/en_corporate/platform/cumulocity-iot.html) resources. 
+An enterprise-grade community node for [n8n](https://n8n.io) that enables native, declarative orchestration of [Cumulocity](https://www.cumulocity.com/) resources. 
 
 Designed specifically to power multi-agent AI workflows, this node features pre-execution validation guards, custom JSON fragment injection, and complete REST API coverage across Cumulocity inventory, measurements, alarms, events, identity, control operations, and asset hierarchies.
 
