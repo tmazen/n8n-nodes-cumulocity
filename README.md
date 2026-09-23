@@ -40,3 +40,33 @@ Compile the TypeScript definitions and copy the SVG icons to the `dist/` build d
 ```bash
 npm run build
 ```
+## Deployment & Docker Integration
+
+To deploy and test your compiled node in a local n8n Docker setup, sync the build output directly to your n8n custom node directory and restart the container:
+
+```bash
+# 1. Compile TypeScript and build assets
+npm run build
+
+# 2. Sync node package into your n8n Docker custom node_modules folder
+rsync -av --delete --exclude 'node_modules' ./ /path/to/n8n/docker/custom/node_modules/n8n-nodes-cumulocity/
+
+# 3. Restart n8n Docker container
+docker restart <YOUR_CONTAINER_ID_OR_NAME>
+```
+
+> **Note:** After restarting Docker, perform a hard refresh in your browser (**Cmd + Shift + R** or **Ctrl + F5**) and re-add the node onto the n8n canvas to ensure the web UI loads the latest schema definitions.
+
+## Multi-Agent Architecture Compatibility
+
+This node is engineered to plug directly into an **AI Agent Orchestrator** in n8n. Sub-agents can invoke specific resources and operations using `$fromAI()` tool parameters:
+
+| **Sub-Agent** | **Primary Resource** | **Primary Operations** |
+|---|---|---|
+| **Inventory Agent** | `inventory` | `createDevice`, `getByName`, `getById`, `updateById` |
+| **Measurement Agent** | `measurement` | `createMeasurement`, `getBySource`, `getByType` |
+| **Alarm Agent** | `alarm` | `createAlarm`, `getBySeverity`, `updateStatus`, `updateSeverity` |
+| **Event Agent** | `event` | `createEvent`, `getBySource` |
+| **Identity Agent** | `identity` | `createExternalId`, `getExternalId` |
+| **Operations Agent** | `operation` | `createOperation`, `updateStatus` |
+| **Asset Agent** | `asset` | `assignChildDevice`, `getChildDevices` |
