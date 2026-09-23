@@ -81,10 +81,10 @@ This node is engineered to plug directly into an **AI Agent Orchestrator** in n8
 
 | **Sub-Agent** | **Primary Resource** | **Primary Operations** |
 | --- | --- | --- |
-| **Inventory Agent** | `inventory` | `createDevice`, `getByName`, `getById`, `updateById` |
-| **Measurement Agent** | `measurement` | `createMeasurement`, `getBySource`, `getByType` |
-| **Alarm Agent** | `alarm` | `createAlarm`, `getBySeverity`, `updateStatus`, `updateSeverity` |
-| **Event Agent** | `event` | `createEvent`, `getBySource` |
-| **Identity Agent** | `identity` | `createExternalId`, `getExternalId` |
-| **Operations Agent** | `operation` | `createOperation`, `updateStatus` |
-| **Asset Agent** | `asset` | `assignChildDevice`, `getChildDevices` |
+| **Inventory Agent** | `inventory` | `createDevice`, `createManagedObject`, `getById`, `getByName`, `getByType`, `getDevices` |
+| **Measurement Agent** | `measurement` | `createMeasurement`, `getBySource`, `getByType`, `getByFragmentType`, `deleteById` |
+| **Alarm Agent** | `alarm` | `createAlarm`, `getById`, `getBySource`, `getByFragmentType`, `getBySeverity`, `getByStatus`, `updateStatus`, `updateSeverity`, `deleteById` |
+| **Event Agent** | `event` | `createEvent`, `getById`, `getBySource`, `deleteById` |
+| **Identity Agent** | `identity` | `createExternalId`, `getExternalId`, `getAllExternalIds`, `deleteExternalId` |
+| **Operations Agent** | `operation` | `createOperation`, `getById`, `getByDevice`, `updateStatusById` |
+| **Asset Agent** | `asset` | `assignChildDevice`, `assignChildAsset`, `getChildDevices`, `unassignChildDevice` |
