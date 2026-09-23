@@ -9,10 +9,10 @@ Designed specifically to power multi-agent AI workflows, this node features pre-
 ## Key Features
 
 * **Inventory Management**: Provision devices, create managed objects, and query inventory by ID, Name, or Type.
-* **Telemetry & Measurements**: Ingest time-series sensor data (water flow, temperature, pressure, power, etc.) with automatic ISO 8601 formatting (`{{ $now.toISO() }}`).
+* **Measurements**: Ingest time-series sensor data (water flow, temperature, pressure, power, etc.) with automatic ISO 8601 formatting (`{{ $now.toISO() }}`).
 * **Alarms & Events**: Raise, query, update, acknowledge, and clear alarms by ID/severity, and log audit/historical events.
 * **Identity Management**: Bind hardware identifiers (Serials, IMEIs, MAC addresses) to internal Cumulocity device IDs.
-* **Operations & Control**: Dispatch remote device control operations (`c8y_Restart`, `c8y_Configuration`, shell commands) and track execution states.
+* **Operations**: Dispatch remote device control operations (`c8y_Restart`, `c8y_Configuration`, shell commands) and track execution states.
 * **Asset Hierarchies**: Model complex parent-child asset structures and assign child devices to groups.
 * **Multi-Agent Safeguards**: Built-in IIFE validation guards throw immediate `VALIDATION_ERROR` responses before network execution if required parameters are missing.
 
