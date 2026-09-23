@@ -32,3 +32,11 @@ Designed specifically to power multi-agent AI workflows, this node features pre-
 git clone [https://github.com/YOUR_USERNAME/n8n-nodes-cumulocity.git](https://github.com/YOUR_USERNAME/n8n-nodes-cumulocity.git)
 cd n8n-nodes-cumulocity
 npm install
+```
+### 2. Build the Extension
+
+Compile the TypeScript definitions and copy the SVG icons to the `dist/` build directory:
+
+```bash
+npm run build
+```
