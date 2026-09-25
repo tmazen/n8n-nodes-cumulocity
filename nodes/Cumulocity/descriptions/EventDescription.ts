@@ -50,6 +50,9 @@ export const eventOperations: INodeProperties[] = [
 						headers: { Accept: 'application/vnd.com.nsn.cumulocity.eventCollection+json' },
 						qs: {
 							source: '={{ (() => { const srcId = String($parameter["sourceId"] || "").replace(/[^0-9]/g, ""); if (!srcId) { throw new Error("VALIDATION_ERROR: Missing required parameter \'sourceId\' to query events."); } return srcId; })() }}',
+							pageSize: '={{ $parameter["pageSize"] || $parameter["limit"] || 50 }}',
+							currentPage: '={{ $parameter["currentPage"] || 1 }}',
+							withTotalPages: 'true',
 						},
 					},
 					output: {

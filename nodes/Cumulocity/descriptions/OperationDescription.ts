@@ -51,6 +51,9 @@ export const deviceOperationOperations: INodeProperties[] = [
 						qs: {
 							deviceId: '={{ (() => { const cleanDeviceId = String($parameter["deviceId"] || "").replace(/[^0-9]/g, ""); if (!cleanDeviceId) { throw new Error("VALIDATION_ERROR: Missing required parameter \'deviceId\' to query operations."); } return cleanDeviceId; })() }}',
 							//status: '={{ $parameter["status"] ? String($parameter["status"]).toUpperCase() : undefined }}',
+							pageSize: '={{ $parameter["pageSize"] || $parameter["limit"] || 50 }}',
+							currentPage: '={{ $parameter["currentPage"] || 1 }}',
+							withTotalPages: 'true',
 						},
 					},
 					output: {

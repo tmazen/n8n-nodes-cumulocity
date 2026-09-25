@@ -52,6 +52,9 @@ export const alarmOperations: INodeProperties[] = [
 							source: '={{ (() => { const srcId = String($parameter["sourceId"] || "").replace(/[^0-9]/g, ""); if (!srcId) { throw new Error("VALIDATION_ERROR: Missing required parameter \'sourceId\' to query alarms."); } return srcId; })() }}',
 							severity: '={{ $parameter["severity"] ? String($parameter["severity"]).toUpperCase() : undefined }}',
 							status: '={{ $parameter["status"] ? String($parameter["status"]).toUpperCase() : undefined }}',
+							pageSize: '={{ $parameter["pageSize"] || $parameter["limit"] || 50 }}',
+							currentPage: '={{ $parameter["currentPage"] || 1 }}',
+							withTotalPages: 'true',
 						},
 					},
 					output: {
@@ -72,6 +75,9 @@ export const alarmOperations: INodeProperties[] = [
 						qs: {
 							severity: '={{ (() => { const sev = String($parameter["severity"] || "").toUpperCase(); if (!sev) { throw new Error("VALIDATION_ERROR: Missing required parameter \'severity\' (CRITICAL, MAJOR, MINOR, WARNING)."); } return sev; })() }}',
 							source: '={{ $parameter["sourceId"] ? String($parameter["sourceId"]).replace(/[^0-9]/g, "") : undefined }}',
+							pageSize: '={{ $parameter["pageSize"] || $parameter["limit"] || 50 }}',
+							currentPage: '={{ $parameter["currentPage"] || 1 }}',
+							withTotalPages: 'true',
 						},
 					},
 					output: {
@@ -90,8 +96,11 @@ export const alarmOperations: INodeProperties[] = [
 						url: '/alarm/alarms',
 						headers: { Accept: 'application/vnd.com.nsn.cumulocity.alarmCollection+json' },
 						qs: {
-							severity: '={{ (() => { const sev = String($parameter["status"] || "").toUpperCase(); if (!sev) { throw new Error("VALIDATION_ERROR: Missing required parameter \'status\' (ACTIVE, ACKNOWLEDGED, CLEARED)."); } return sev; })() }}',
+							status: '={{ (() => { const sev = String($parameter["status"] || "").toUpperCase(); if (!sev) { throw new Error("VALIDATION_ERROR: Missing required parameter \'status\' (ACTIVE, ACKNOWLEDGED, CLEARED)."); } return sev; })() }}',
 							source: '={{ $parameter["sourceId"] ? String($parameter["sourceId"]).replace(/[^0-9]/g, "") : undefined }}',
+							pageSize: '={{ $parameter["pageSize"] || $parameter["limit"] || 50 }}',
+							currentPage: '={{ $parameter["currentPage"] || 1 }}',
+							withTotalPages: 'true',
 						},
 					},
 					output: {
@@ -165,17 +174,7 @@ export const alarmFields: INodeProperties[] = [
 		},
 		default: '',
 		description: 'The internal unique ID of the target alarm in Cumulocity',
-	},/*
-	{
-		displayName: 'Source ID',
-		name: 'sourceId',
-		type: 'string',
-		required: true,
-		//displayOptions: { show: { resource: ['alarm'], operation: ['createAlarm', 'getBySource'] } },
-		displayOptions: { show: { resource: ['alarm'], operation: ['getBySource'] } },
-		default: '',
-		description: 'The target device ID in Cumulocity',
-	},*/
+	},
 	{
 		displayName: 'Alarm Type',
 		name: 'type',

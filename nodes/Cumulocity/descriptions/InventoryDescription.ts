@@ -67,6 +67,9 @@ export const inventoryOperations: INodeProperties[] = [
 						headers: { Accept: 'application/vnd.com.nsn.cumulocity.managedObjectCollection+json' },
 						qs: {
 							query: '={{ (() => { const queryVal = String($parameter["queryValue"] || $parameter["name"] || "").trim(); if (!queryVal) { throw new Error("VALIDATION_ERROR: Missing required search parameter \'queryValue\' or \'name\'."); } return "$filter=(name eq \'" + queryVal + "\')"; })() }}',
+							pageSize: '={{ $parameter["pageSize"] || $parameter["limit"] || 50 }}',
+							currentPage: '={{ $parameter["currentPage"] || 1 }}',
+							withTotalPages: 'true',
 						},
 					},
 					output: {
@@ -86,6 +89,9 @@ export const inventoryOperations: INodeProperties[] = [
 						headers: { Accept: 'application/vnd.com.nsn.cumulocity.managedObjectCollection+json' },
 						qs: {
 							type: '={{ (() => { const typeVal = String($parameter["queryValue"] || $parameter["type"] || "").trim(); if (!typeVal) { throw new Error("VALIDATION_ERROR: Missing required parameter \'type\'. Specify a device/asset type string to query."); } return typeVal; })() }}',
+							pageSize: '={{ $parameter["pageSize"] || $parameter["limit"] || 50 }}',
+							currentPage: '={{ $parameter["currentPage"] || 1 }}',
+							withTotalPages: 'true',
 						},
 					},
 					output: {
@@ -101,8 +107,15 @@ export const inventoryOperations: INodeProperties[] = [
 				routing: {
 					request: {
 						method: 'GET',
-						url: '/inventory/managedObjects?fragmentType=c8y_IsDevice&pageSize=2000',
+						url: '/inventory/managedObjects',
 						headers: { Accept: 'application/vnd.com.nsn.cumulocity.managedObjectCollection+json' },
+						qs: {
+							fragmentType: 'c8y_IsDevice',
+							pageSize: '={{ $parameter["pageSize"] || $parameter["limit"] || 50 }}',
+							currentPage: '={{ $parameter["currentPage"] || 1 }}',
+							withTotalPages: 'true',
+						},
+
 					},
 					output: {
 						postReceive: [{ type: 'rootProperty', properties: { property: 'managedObjects' } }],

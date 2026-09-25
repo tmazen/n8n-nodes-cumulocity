@@ -37,6 +37,9 @@ export const measurementOperations: INodeProperties[] = [
 						headers: { Accept: 'application/vnd.com.nsn.cumulocity.measurementCollection+json' },
 						qs: {
 							source: '={{ (() => { const srcId = String($parameter["sourceId"] || "").replace(/[^0-9]/g, ""); if (!srcId) { throw new Error("VALIDATION_ERROR: Missing required parameter \'sourceId\'. A valid target device ID is required."); } return srcId; })() }}',
+							pageSize: '={{ $parameter["pageSize"] || $parameter["limit"] || 50 }}',
+							currentPage: '={{ $parameter["currentPage"] || 1 }}',
+							withTotalPages: 'true',
 						},
 					},
 					output: {
@@ -56,6 +59,9 @@ export const measurementOperations: INodeProperties[] = [
 						headers: { Accept: 'application/vnd.com.nsn.cumulocity.measurementCollection+json' },
 						qs: {
 							type: '={{ (() => { const typeVal = String($parameter["queryValue"] || $parameter["type"] || "").trim(); if (!typeVal) { throw new Error("VALIDATION_ERROR: Missing required filter parameter \'type\'."); } return typeVal; })() }}',
+							pageSize: '={{ $parameter["pageSize"] || $parameter["limit"] || 50 }}',
+							currentPage: '={{ $parameter["currentPage"] || 1 }}',
+							withTotalPages: 'true',
 						},
 					},
 					output: {
@@ -75,6 +81,9 @@ export const measurementOperations: INodeProperties[] = [
 						headers: { Accept: 'application/vnd.com.nsn.cumulocity.measurementCollection+json' },
 						qs: {
 							valueFragmentType: '={{ (() => { const fragVal = String($parameter["queryValue"] || $parameter["fragmentType"] || "").trim(); if (!fragVal) { throw new Error("VALIDATION_ERROR: Missing required filter parameter \'fragmentType\'."); } return fragVal; })() }}',
+							pageSize: '={{ $parameter["pageSize"] || $parameter["limit"] || 50 }}',
+							currentPage: '={{ $parameter["currentPage"] || 1 }}',
+							withTotalPages: 'true',
 						},
 					},
 					output: {
@@ -95,6 +104,9 @@ export const measurementOperations: INodeProperties[] = [
 						qs: {
 							dateFrom: '={{ (() => { if (!$parameter["dateFrom"]) { throw new Error("VALIDATION_ERROR: Missing required parameter \'dateFrom\'."); } return $parameter["dateFrom"]; })() }}',
 							dateTo: '={{ (() => { if (!$parameter["dateTo"]) { throw new Error("VALIDATION_ERROR: Missing required parameter \'dateTo\'."); } return $parameter["dateTo"]; })() }}',
+							pageSize: '={{ $parameter["pageSize"] || $parameter["limit"] || 50 }}',
+							currentPage: '={{ $parameter["currentPage"] || 1 }}',
+							withTotalPages: 'true',
 						},
 					},
 					output: {

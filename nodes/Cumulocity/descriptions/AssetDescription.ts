@@ -52,6 +52,11 @@ export const assetOperations: INodeProperties[] = [
 						method: 'GET',
 						url: '=/inventory/managedObjects/{{ (() => { const cleanParentId = String($parameter["parentId"] || "").replace(/[^0-9]/g, ""); if (!cleanParentId) { throw new Error("VALIDATION_ERROR: Missing required parameter \'parentId\'."); } return cleanParentId; })() }}/childDevices',
 						headers: { Accept: 'application/vnd.com.nsn.cumulocity.managedObjectReferenceCollection+json' },
+						qs: {	
+							pageSize: '={{ $parameter["pageSize"] || $parameter["limit"] || 50 }}',
+							currentPage: '={{ $parameter["currentPage"] || 1 }}',
+							withTotalPages: 'true',
+						},
 					},
 					output: {
 						postReceive: [{ type: 'rootProperty', properties: { property: 'references' } }],

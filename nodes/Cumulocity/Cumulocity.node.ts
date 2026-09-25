@@ -12,6 +12,7 @@ import { alarmOperations, alarmFields } from './descriptions/AlarmDescription';
 import { deviceOperationOperations, deviceOperationFields } from './descriptions/OperationDescription';
 import { identityOperations, identityFields } from './descriptions/IdentityDescription';
 import { assetOperations, assetFields } from './descriptions/AssetDescription';
+import { paginationFields } from './descriptions/PaginationDescription';
 
 export class Cumulocity implements INodeType {
 	description: INodeTypeDescription = {
@@ -183,7 +184,6 @@ export class Cumulocity implements INodeType {
 				displayOptions: {
 					show: {
 						resource: ['operation'],
-						//operation: ['createOperation', 'getBySource'],
 						operation: ['getBySource'],
 					},
 				},
@@ -239,7 +239,7 @@ export class Cumulocity implements INodeType {
 				required: true,
 				displayOptions: {
 					show: {
-						operation: ['getById', 'deleteById', 'updateById','updateStatusById'],
+						operation: ['getById', 'deleteById', 'updateById', 'updateStatusById'],
 					},
 				},
 				default: '',
@@ -411,6 +411,9 @@ export class Cumulocity implements INodeType {
 				default: '',
 				description: 'Filter criteria for alarm severity',
 			},
+
+			// Pagination Fields (Evaluated at the very end)
+			...paginationFields,
 		],
 	};
 
